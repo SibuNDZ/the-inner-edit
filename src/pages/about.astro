@@ -1,0 +1,258 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="About" 
+  description="The story behind The Inner Edit and the philosophy of intentional living"
+>
+  <article class="about-page">
+    <!-- Hero Section -->
+    <section class="about-hero">
+      <div class="container content-width">
+        <span class="section-label">About</span>
+        <h1>The Inner Edit</h1>
+        <p class="about-subtitle accent-text">
+          Where story meets ritual. Where intention becomes practice.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="about-content section">
+      <div class="container content-width">
+        <div class="about-image">
+          <img src="/images/about-portrait.jpg" alt="Portrait" loading="lazy" />
+        </div>
+
+        <div class="about-text">
+          <h2>A Life Edited with Intention</h2>
+          <p>
+            The Inner Edit began as a quiet practice, a way of curating my days, 
+            my thoughts, my rituals with the same care I once reserved for other 
+            people's stories. As a writer and creative, I spent years shaping 
+            narratives for others before I realized I could do the same for my own life.
+          </p>
+
+          <p>
+            This space is an invitation to explore what it means to live deliberately, 
+            to choose what stays and what goes, to find meaning in the mundane and 
+            beauty in the intentional. It's about the art of editing, not just words 
+            on a page, but the very fabric of our days.
+          </p>
+
+          <h3>The Philosophy</h3>
+          <p>
+            Life is an ongoing edit. Every choice is a decision about what deserves 
+            our attention, our energy, our presence. Through these pages, I explore 
+            the rituals that ground us, the stories that shape us, and the quiet 
+            moments that remind us who we are.
+          </p>
+
+          <blockquote class="pull-quote">
+            <p class="accent-text">
+              "We are not just the stories we tell ourselves - we are also the 
+              stories we choose to edit, to refine, to release."
+            </p>
+          </blockquote>
+
+          <h3>The Collection</h3>
+          <p>
+            Alongside this journal, I've created a curated collection of objects 
+            designed to bring ritual into everyday moments. From hand-poured candles 
+            to minimal jewelry, each piece is crafted to anchor you to the present, 
+            to mark transitions, to celebrate the art of intentional living.
+          </p>
+
+          <p>
+            These aren't just products, they're invitations. To pause. To reflect. 
+            To create your own rituals. To edit your inner world with the same care 
+            you bring to everything else.
+          </p>
+
+          <h3>The Mission</h3>
+          <p>
+            Through thoughtful writing, carefully crafted products, and a community 
+            of intentional seekers, The Inner Edit exists to help you:
+          </p>
+          
+          <ul class="mission-list">
+            <li>Create meaningful rituals that ground your daily life</li>
+            <li>Develop a practice of intentional reflection and editing</li>
+            <li>Find beauty in simplicity and purpose in the everyday</li>
+            <li>Build a life that feels like your truest story</li>
+          </ul>
+
+          <div class="about-cta">
+            <a href="/blog" class="btn">Read the Journal</a>
+            <a href="/shop" class="btn btn-outline">Explore the Collection</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section section">
+      <div class="container">
+        <h2 class="text-center">Our Values</h2>
+        
+        <div class="values-grid">
+          <div class="value-card">
+            <h4>Intention</h4>
+            <p>
+              Every choice matters. We believe in living deliberately, choosing 
+              mindfully, and creating with purpose.
+            </p>
+          </div>
+          
+          <div class="value-card">
+            <h4>Quality</h4>
+            <p>
+              From our words to our products, we believe in craftsmanship, 
+              attention to detail, and creating things meant to last.
+            </p>
+          </div>
+          
+          <div class="value-card">
+            <h4>Simplicity</h4>
+            <p>
+              In a world of excess, we find beauty in restraint, elegance in 
+              minimalism, and power in what we choose not to include.
+            </p>
+          </div>
+          
+          <div class="value-card">
+            <h4>Authenticity</h4>
+            <p>
+              We honor the messy, the real, the unfinished. Growth isn't always 
+              graceful, and that's perfectly okay.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .about-hero {
+    padding: var(--space-xl) 0 var(--space-lg);
+    background: linear-gradient(180deg, var(--color-warm-beige) 0%, var(--color-eggshell) 100%);
+    text-align: center;
+  }
+
+  .about-hero h1 {
+    margin-bottom: 1rem;
+  }
+
+  .about-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+
+  .about-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .about-image {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    margin-bottom: var(--space-lg);
+  }
+
+  .about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-text h2 {
+    margin-bottom: 2rem;
+  }
+
+  .about-text h3 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .pull-quote {
+    margin: var(--space-lg) 0;
+    padding: var(--space-md);
+    background-color: var(--color-soft-blush);
+    border-left: 3px solid var(--color-muted-gold);
+  }
+
+  .pull-quote p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .mission-list {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin: 2rem 0 3rem;
+    padding-left: 1.5rem;
+  }
+
+  .mission-list li {
+    margin-bottom: 1rem;
+  }
+
+  .about-cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: var(--space-lg);
+  }
+
+  .values-section {
+    background-color: var(--color-warm-beige);
+  }
+
+  .values-section h2 {
+    margin-bottom: var(--space-lg);
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .value-card {
+    text-align: center;
+    padding: var(--space-md);
+  }
+
+  .value-card h4 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-charcoal);
+  }
+
+  .value-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 768px) {
+    .about-cta {
+      flex-direction: column;
+    }
+
+    .values-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

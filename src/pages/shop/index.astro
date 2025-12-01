@@ -1,0 +1,374 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// Sample product data - in production, this would come from Shopify API
+const collections = [
+  'All',
+  'Jewelry',
+  'Candles',
+  'Apparel',
+  'Gift Sets'
+];
+
+const products = [
+  {
+    id: 1,
+    name: 'Sunday Ritual Candle',
+    price: 42,
+    collection: 'Candles',
+    image: '/images/candle-1.jpg',
+    description: 'Hand-poured soy wax candle with notes of sage, lavender, and sandalwood'
+  },
+  {
+    id: 2,
+    name: 'Morning Light Candle',
+    price: 42,
+    collection: 'Candles',
+    image: '/images/candle-2.jpg',
+    description: 'A gentle blend of citrus and white tea to welcome the day'
+  },
+  {
+    id: 3,
+    name: 'Intention Necklace',
+    price: 68,
+    collection: 'Jewelry',
+    image: '/images/jewelry-1.jpg',
+    description: 'Minimalist sterling silver pendant with intention stone'
+  },
+  {
+    id: 4,
+    name: 'Ritual Ring',
+    price: 54,
+    collection: 'Jewelry',
+    image: '/images/jewelry-2.jpg',
+    description: 'Hand-crafted brass ring with hammered texture'
+  },
+  {
+    id: 5,
+    name: 'The Edit Tee',
+    price: 38,
+    collection: 'Apparel',
+    image: '/images/tshirt-1.jpg',
+    description: 'Organic cotton t-shirt with subtle embroidered detail'
+  },
+  {
+    id: 6,
+    name: 'Sunday Edition Gift Set',
+    price: 125,
+    collection: 'Gift Sets',
+    image: '/images/giftset-1.jpg',
+    description: 'Curated collection: candle, necklace, and journal'
+  }
+];
+---
+
+<Layout title="Shop" description="Curated objects for intentional living and daily ritual">
+  <!-- Shop Header -->
+  <section class="shop-header">
+    <div class="container content-width text-center">
+      <span class="section-label">The Collection</span>
+      <h1>Objects for Intentional Living</h1>
+      <p class="shop-intro">
+        Each piece is thoughtfully designed to bring ritual and intention into 
+        your everyday moments. From hand-poured candles to minimal jewelry, 
+        discover objects meant to anchor you to the present.
+      </p>
+    </div>
+  </section>
+
+  <!-- Shop Content -->
+  <section class="shop-content section">
+    <div class="container">
+      <!-- Collection Filter -->
+      <div class="collections">
+        {collections.map(collection => (
+          <button 
+            class="collection-btn" 
+            data-collection={collection}
+          >
+            {collection}
+          </button>
+        ))}
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid">
+        {products.map(product => (
+          <article class="product-card card" data-collection={product.collection}>
+            <a href={`/shop/product/${product.id}`} class="product-link">
+              <div class="product-image">
+                <img src={product.image} alt={product.name} loading="lazy" />
+                <div class="product-overlay">
+                  <span class="quick-view">View Details</span>
+                </div>
+              </div>
+              <div class="product-info">
+                <span class="product-collection">{product.collection}</span>
+                <h3 class="product-title">{product.name}</h3>
+                <p class="product-description">{product.description}</p>
+                <p class="product-price">${product.price}</p>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Shopify Info Section -->
+  <section class="shopify-info section">
+    <div class="container content-width text-center">
+      <h2>Crafted with Care</h2>
+      <p>
+        Every product is made in small batches with attention to quality and 
+        sustainability. We believe in creating things meant to last, objects 
+        that become part of your daily rituals and cherished for years to come.
+      </p>
+      
+      <div class="info-grid">
+        <div class="info-item">
+          <h4>Free Shipping</h4>
+          <p>On orders over $75</p>
+        </div>
+        <div class="info-item">
+          <h4>30-Day Returns</h4>
+          <p>Full refund guarantee</p>
+        </div>
+        <div class="info-item">
+          <h4>Eco-Friendly</h4>
+          <p>Sustainable materials</p>
+        </div>
+        <div class="info-item">
+          <h4>Gift Wrapping</h4>
+          <p>Complimentary service</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .shop-header {
+    padding: var(--space-xl) 0 var(--space-lg);
+    background: linear-gradient(180deg, var(--color-warm-beige) 0%, var(--color-eggshell) 100%);
+  }
+
+  .shop-header h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .shop-intro {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .collections {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-soft-sand);
+  }
+
+  .collection-btn {
+    padding: 0.5rem 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    background: transparent;
+    border: 1px solid var(--color-soft-sand);
+    border-radius: 100px;
+    color: var(--color-charcoal);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .collection-btn:hover,
+  .collection-btn.active {
+    background-color: var(--color-charcoal);
+    color: var(--color-eggshell);
+    border-color: var(--color-charcoal);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .product-card {
+    background: white;
+    position: relative;
+  }
+
+  .product-link {
+    display: block;
+    color: inherit;
+  }
+
+  .product-image {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+  }
+
+  .product-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(42, 42, 42, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+
+  .quick-view {
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .product-card:hover .product-image img {
+    transform: scale(1.05);
+  }
+
+  .product-card:hover .product-overlay {
+    opacity: 1;
+  }
+
+  .product-info {
+    padding: 1.5rem;
+  }
+
+  .product-collection {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted-gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .product-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .product-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+  }
+
+  .product-price {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--color-charcoal);
+    margin: 0;
+  }
+
+  .shopify-info {
+    background-color: var(--color-soft-blush);
+  }
+
+  .shopify-info h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .shopify-info > div > p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    opacity: 0.9;
+    margin-bottom: 3rem;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+  }
+
+  .info-item {
+    text-align: center;
+  }
+
+  .info-item h4 {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .info-item p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .collections {
+      justify-content: flex-start;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Collection filtering
+  const collectionBtns = document.querySelectorAll('.collection-btn');
+  const productCards = document.querySelectorAll('.product-card');
+
+  collectionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const collection = btn.getAttribute('data-collection');
+      
+      // Update active state
+      collectionBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Filter products
+      productCards.forEach(card => {
+        const productCollection = card.getAttribute('data-collection');
+        
+        if (collection === 'All' || productCollection === collection) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Set "All" as active by default
+  document.querySelector('.collection-btn')?.classList.add('active');
+</script>

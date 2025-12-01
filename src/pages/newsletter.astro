@@ -1,0 +1,333 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Newsletter" 
+  description="Subscribe to The Editor's Note for monthly reflections and updates"
+>
+  <section class="newsletter-page">
+    <div class="container content-width">
+      <div class="newsletter-content">
+        <span class="section-label">The Editor's Note</span>
+        <h1>Join the Inner Circle</h1>
+        
+        <p class="newsletter-intro">
+          Once a month, I send a carefully curated newsletter—part reflection, 
+          part ritual guide, part love letter to intentional living. It's a 
+          space for deeper thoughts, early access to new collections, and 
+          invitations to slow down.
+        </p>
+
+        <div class="newsletter-details">
+          <h2>What to Expect</h2>
+          
+          <div class="detail-item">
+            <h3>Monthly Reflections</h3>
+            <p>
+              Long-form essays and personal stories that don't make it to the 
+              blog—deeper dives into the art of editing life.
+            </p>
+          </div>
+
+          <div class="detail-item">
+            <h3>Early Access</h3>
+            <p>
+              Be the first to know about new product launches, limited editions, 
+              and subscriber-only offerings.
+            </p>
+          </div>
+
+          <div class="detail-item">
+            <h3>Curated Rituals</h3>
+            <p>
+              Seasonal practices, reading recommendations, and simple rituals 
+              to anchor your days.
+            </p>
+          </div>
+
+          <div class="detail-item">
+            <h3>Behind the Scenes</h3>
+            <p>
+              Sneak peeks into new projects, my creative process, and the 
+              stories behind the collection.
+            </p>
+          </div>
+        </div>
+
+        <div class="signup-form-wrapper">
+          <h2>Subscribe</h2>
+          <p>No spam, no overwhelm. Just thoughtful notes, once a month.</p>
+          
+          <form class="signup-form" id="newsletterForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  placeholder="Your name"
+                  class="form-input"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  placeholder="your@email.com"
+                  required 
+                  class="form-input"
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="btn">Subscribe to The Editor's Note</button>
+
+            <div class="form-message" id="formMessage"></div>
+
+            <p class="privacy-note">
+              <small>
+                We respect your privacy. Your email will never be shared, and you 
+                can unsubscribe at any time. By subscribing, you agree to receive 
+                occasional emails from The Inner Edit.
+              </small>
+            </p>
+          </form>
+        </div>
+
+        <div class="social-connect">
+          <h3>Connect on Social</h3>
+          <p>For daily inspiration and behind-the-scenes moments:</p>
+          <div class="social-links">
+            <a href="#" target="_blank" class="social-link">Instagram</a>
+            <a href="#" target="_blank" class="social-link">Pinterest</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .newsletter-page {
+    padding: var(--space-xl) 0;
+  }
+
+  .newsletter-content {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .newsletter-content h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .newsletter-intro {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+  }
+
+  .newsletter-details {
+    margin-bottom: 4rem;
+  }
+
+  .newsletter-details h2 {
+    margin-bottom: 2rem;
+  }
+
+  .detail-item {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-soft-sand);
+  }
+
+  .detail-item:last-child {
+    border-bottom: none;
+  }
+
+  .detail-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .detail-item p {
+    font-size: 1rem;
+    line-height: 1.7;
+    opacity: 0.9;
+    margin: 0;
+  }
+
+  .signup-form-wrapper {
+    background: var(--color-warm-beige);
+    padding: var(--space-lg);
+    border-radius: var(--border-radius);
+    margin-bottom: 3rem;
+  }
+
+  .signup-form-wrapper h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .signup-form-wrapper > p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: var(--color-charcoal);
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    border: 1px solid var(--color-soft-sand);
+    border-radius: var(--border-radius);
+    background-color: white;
+    color: var(--color-charcoal);
+    transition: border-color var(--transition-fast);
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-charcoal);
+  }
+
+  .form-message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    display: none;
+  }
+
+  .form-message.success {
+    display: block;
+    background-color: #d4edda;
+    color: #155724;
+  }
+
+  .form-message.error {
+    display: block;
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+
+  .privacy-note {
+    margin-top: 1rem;
+    opacity: 0.8;
+  }
+
+  .privacy-note small {
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .social-connect {
+    text-align: center;
+    padding: var(--space-md);
+  }
+
+  .social-connect h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .social-connect p {
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+
+  .social-link {
+    padding: 0.75rem 2rem;
+    border: 1px solid var(--color-charcoal);
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    transition: all var(--transition-fast);
+  }
+
+  .social-link:hover {
+    background-color: var(--color-charcoal);
+    color: var(--color-eggshell);
+  }
+
+  @media (max-width: 768px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .signup-form-wrapper {
+      padding: var(--space-md);
+    }
+
+    .social-links {
+      flex-direction: column;
+    }
+
+    .social-link {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('newsletterForm') as HTMLFormElement;
+  const formMessage = document.getElementById('formMessage');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        formMessage!.textContent = 'Welcome to The Inner Circle! Check your email to confirm your subscription.';
+        formMessage!.className = 'form-message success';
+        form.reset();
+      } else {
+        const error = await response.json();
+        throw new Error(error.message || 'Failed to subscribe');
+      }
+    } catch (error) {
+      formMessage!.textContent = error instanceof Error ? error.message : 'Sorry, there was an error. Please try again.';
+      formMessage!.className = 'form-message error';
+    }
+  });
+</script>

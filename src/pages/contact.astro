@@ -1,0 +1,275 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact" description="Get in touch with The Inner Edit">
+  <section class="contact-page">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <h1>Let's Connect</h1>
+          <p class="contact-intro">
+            Whether you have a question about an order, want to collaborate, 
+            or simply want to say hello, I'd love to hear from you.
+          </p>
+
+          <div class="contact-details">
+            <div class="contact-item">
+              <h3>Email</h3>
+              <p><a href="mailto:hello@theinneredit.com">hello@theinneredit.com</a></p>
+            </div>
+
+            <div class="contact-item">
+              <h3>Social</h3>
+              <p>
+                <a href="#" target="_blank">Instagram</a> • 
+                <a href="#" target="_blank">Pinterest</a>
+              </p>
+            </div>
+
+            <div class="contact-item">
+              <h3>Newsletter</h3>
+              <p>
+                <a href="/newsletter">Subscribe to The Editor's Note</a> for 
+                monthly reflections and updates.
+              </p>
+            </div>
+          </div>
+
+          <div class="response-time">
+            <p>
+              <strong>Response Time:</strong> I typically respond within 24-48 hours. 
+              For order inquiries, please include your order number.
+            </p>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-wrapper">
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required 
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required 
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject" class="form-input">
+                <option value="general">General Inquiry</option>
+                <option value="order">Order Question</option>
+                <option value="collaboration">Collaboration</option>
+                <option value="wholesale">Wholesale</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="6" 
+                required 
+                class="form-input"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn">Send Message</button>
+
+            <div class="form-message" id="formMessage"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-page {
+    padding: var(--space-xl) 0;
+    min-height: 70vh;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .contact-info h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-intro {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+  }
+
+  .contact-details {
+    margin-bottom: 3rem;
+  }
+
+  .contact-item {
+    margin-bottom: 2rem;
+  }
+
+  .contact-item h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-item p {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .contact-item a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .response-time {
+    padding: 1.5rem;
+    background-color: var(--color-warm-beige);
+    border-radius: var(--border-radius);
+  }
+
+  .response-time p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .contact-form-wrapper {
+    background: white;
+    padding: var(--space-lg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: var(--color-charcoal);
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    border: 1px solid var(--color-soft-sand);
+    border-radius: var(--border-radius);
+    background-color: var(--color-eggshell);
+    color: var(--color-charcoal);
+    transition: border-color var(--transition-fast);
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-charcoal);
+  }
+
+  textarea.form-input {
+    resize: vertical;
+    min-height: 150px;
+  }
+
+  .form-message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    display: none;
+  }
+
+  .form-message.success {
+    display: block;
+    background-color: #d4edda;
+    color: #155724;
+  }
+
+  .form-message.error {
+    display: block;
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+
+  @media (max-width: 968px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-form-wrapper {
+      padding: var(--space-md);
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement;
+  const formMessage = document.getElementById('formMessage');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    try {
+      // In production, this would POST to a Cloudflare Worker endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        formMessage!.textContent = 'Thank you for your message! I\'ll get back to you soon.';
+        formMessage!.className = 'form-message success';
+        form.reset();
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      formMessage!.textContent = 'Sorry, there was an error sending your message. Please try again or email directly.';
+      formMessage!.className = 'form-message error';
+    }
+
+    // Hide message after 5 seconds
+    setTimeout(() => {
+      formMessage!.style.display = 'none';
+    }, 5000);
+  });
+</script>

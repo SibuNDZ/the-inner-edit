@@ -1,0 +1,252 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// In a real implementation, you'd fetch blog posts from your content collection
+// For now, we'll use sample data
+const categories = [
+  'All',
+  'The Lead Story',
+  'The Rewrite',
+  'In-depth',
+  'The Sunday Supplement',
+  'The Editor\'s Desk'
+];
+
+const posts = [
+  {
+    title: 'On Intention and the Art of Editing Life',
+    excerpt: 'There\'s a quiet power in deciding what stays and what goes.',
+    category: 'The Lead Story',
+    date: '2024-11-28',
+    slug: 'intention-and-editing',
+    image: '/images/blog-1.jpg'
+  },
+  {
+    title: 'Morning Rituals for a Grounded Day',
+    excerpt: 'How I\'ve learned to anchor myself before the world rushes in.',
+    category: 'The Sunday Supplement',
+    date: '2024-11-20',
+    slug: 'morning-rituals',
+    image: '/images/blog-2.jpg'
+  },
+  {
+    title: 'Rewriting the Narrative: On Change',
+    excerpt: 'Sometimes the story we\'re telling ourselves needs a gentle edit.',
+    category: 'The Rewrite',
+    date: '2024-11-15',
+    slug: 'rewriting-narrative',
+    image: '/images/blog-3.jpg'
+  }
+];
+---
+
+<Layout title="Journal" description="Reflections, stories, and thoughts on intentional living">
+  <section class="blog-header">
+    <div class="container content-width text-center">
+      <h1>The Journal</h1>
+      <p class="blog-intro">
+        Essays, reflections, and stories on living with intention, 
+        finding meaning in the everyday, and the art of the inner edit.
+      </p>
+    </div>
+  </section>
+
+  <section class="blog-content section">
+    <div class="container">
+      <!-- Category Filter -->
+      <div class="categories">
+        {categories.map(category => (
+          <button 
+            class="category-btn" 
+            data-category={category}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <!-- Blog Posts Grid -->
+      <div class="posts-grid">
+        {posts.map(post => (
+          <article class="post-card card">
+            <a href={`/blog/${post.slug}`} class="post-card-link">
+              <div class="post-card-image">
+                <img src={post.image} alt={post.title} loading="lazy" />
+              </div>
+              <div class="post-card-content">
+                <span class="post-category">{post.category}</span>
+                <h2 class="post-card-title">{post.title}</h2>
+                <p class="post-card-excerpt">{post.excerpt}</p>
+                <time class="post-date" datetime={post.date}>
+                  {new Date(post.date).toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  })}
+                </time>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .blog-header {
+    padding: var(--space-xl) 0 var(--space-lg);
+    background: linear-gradient(180deg, var(--color-warm-beige) 0%, var(--color-eggshell) 100%);
+  }
+
+  .blog-header h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-intro {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .categories {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-soft-sand);
+  }
+
+  .category-btn {
+    padding: 0.5rem 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    background: transparent;
+    border: 1px solid var(--color-soft-sand);
+    border-radius: 100px;
+    color: var(--color-charcoal);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .category-btn:hover,
+  .category-btn.active {
+    background-color: var(--color-charcoal);
+    color: var(--color-eggshell);
+    border-color: var(--color-charcoal);
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .post-card {
+    background: white;
+  }
+
+  .post-card-link {
+    display: block;
+    color: inherit;
+  }
+
+  .post-card-image {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .post-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+  }
+
+  .post-card:hover .post-card-image img {
+    transform: scale(1.05);
+  }
+
+  .post-card-content {
+    padding: 2rem;
+  }
+
+  .post-category {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted-gold);
+    margin-bottom: 1rem;
+  }
+
+  .post-card-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .post-card-excerpt {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+  }
+
+  .post-date {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-soft-sand);
+  }
+
+  @media (max-width: 768px) {
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .categories {
+      justify-content: flex-start;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Category filtering
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  const postCards = document.querySelectorAll('.post-card');
+
+  categoryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.getAttribute('data-category');
+      
+      // Update active state
+      categoryBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Filter posts
+      postCards.forEach(card => {
+        const postCategory = card.querySelector('.post-category')?.textContent;
+        
+        if (category === 'All' || postCategory === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Set "All" as active by default
+  document.querySelector('.category-btn')?.classList.add('active');
+</script>

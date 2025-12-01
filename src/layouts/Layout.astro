@@ -1,0 +1,253 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "A life edited with intention" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} | The Inner Edit</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <nav class="nav-main">
+          <a href="/" class="logo">
+            <span class="logo-text">The Inner Edit</span>
+          </a>
+          
+          <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Journal</a></li>
+            <li><a href="/shop">Shop</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+          
+          <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>The Inner Edit</h4>
+            <p class="footer-tagline accent-text">Where story meets ritual</p>
+          </div>
+          
+          <div class="footer-section">
+            <h5>Explore</h5>
+            <ul class="footer-links">
+              <li><a href="/blog">Journal</a></li>
+              <li><a href="/shop">Shop</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h5>Follow</h5>
+            <ul class="footer-links">
+              <li><a href="#" target="_blank">Instagram</a></li>
+              <li><a href="#" target="_blank">Pinterest</a></li>
+              <li><a href="/newsletter">Newsletter</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h5>Support</h5>
+            <ul class="footer-links">
+              <li><a href="/faqs">FAQs</a></li>
+              <li><a href="/shipping">Shipping</a></li>
+              <li><a href="/returns">Returns</a></li>
+              <li><a href="/privacy">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} DSN Research. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <style>
+      /* Header Styles */
+      .site-header {
+        background-color: var(--color-eggshell);
+        border-bottom: 1px solid var(--color-soft-sand);
+        padding: 1.5rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+        background-color: rgba(247, 244, 242, 0.95);
+      }
+
+      .nav-main {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-text {
+        font-family: var(--font-serif);
+        font-size: 1.5rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: var(--color-charcoal);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+        margin: 0;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        transition: color var(--transition-fast);
+      }
+
+      .nav-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+      }
+
+      .nav-toggle span {
+        width: 24px;
+        height: 2px;
+        background-color: var(--color-charcoal);
+        transition: all var(--transition-fast);
+      }
+
+      /* Footer Styles */
+      .site-footer {
+        background-color: var(--color-warm-beige);
+        padding: var(--space-xl) 0 var(--space-md);
+        margin-top: var(--space-xl);
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr repeat(3, 1fr);
+        gap: var(--space-lg);
+        margin-bottom: var(--space-lg);
+      }
+
+      .footer-section h4 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-section h5 {
+        font-family: var(--font-sans);
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+
+      .footer-tagline {
+        font-size: 1rem;
+        margin-bottom: 0;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-links a {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        transition: opacity var(--transition-fast);
+      }
+
+      .footer-links a:hover {
+        opacity: 1;
+      }
+
+      .footer-bottom {
+        padding-top: var(--space-md);
+        border-top: 1px solid var(--color-soft-sand);
+        text-align: center;
+      }
+
+      .footer-bottom p {
+        font-size: 0.875rem;
+        opacity: 0.7;
+        margin: 0;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 968px) {
+        .nav-links {
+          display: none;
+        }
+
+        .nav-toggle {
+          display: flex;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: var(--space-md);
+        }
+      }
+    </style>
+
+    <script>
+      // Mobile navigation toggle
+      document.querySelector('.nav-toggle')?.addEventListener('click', () => {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks?.classList.toggle('active');
+      });
+    </script>
+  </body>
+</html>

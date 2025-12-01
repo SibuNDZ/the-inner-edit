@@ -1,0 +1,29 @@
+name = "the-inner-edit"
+compatibility_date = "2024-11-01"
+
+# Cloudflare Pages configuration
+pages_build_output_dir = "./dist"
+
+[env.production]
+name = "the-inner-edit"
+routes = [
+  { pattern = "theinneredit.com/*", zone_name = "theinneredit.com" }
+]
+
+[env.staging]
+name = "the-inner-edit-staging"
+
+# D1 Database for storing contacts and newsletter subscribers
+[[d1_databases]]
+binding = "DB"
+database_name = "inner-edit-db"
+database_id = "your-database-id-here" # Replace with actual D1 database ID
+
+# Environment variables (set these in Cloudflare dashboard)
+[vars]
+SITE_URL = "https://theinneredit.com"
+
+# Secrets (set via `wrangler secret put`)
+# RESEND_API_KEY - For sending emails
+# SHOPIFY_STOREFRONT_TOKEN - For Shopify integration
+# SHOPIFY_STORE_DOMAIN - Your Shopify store domain
