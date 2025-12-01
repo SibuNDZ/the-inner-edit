@@ -14,7 +14,7 @@ const products = [
   {
     id: 1,
     name: 'Sunday Ritual Candle',
-    price: 42,
+    price: 798, // $42 * 19
     collection: 'Candles',
     image: '/images/candle-1.jpg',
     description: 'Hand-poured soy wax candle with notes of sage, lavender, and sandalwood'
@@ -22,7 +22,7 @@ const products = [
   {
     id: 2,
     name: 'Morning Light Candle',
-    price: 42,
+    price: 798, // $42 * 19
     collection: 'Candles',
     image: '/images/candle-2.jpg',
     description: 'A gentle blend of citrus and white tea to welcome the day'
@@ -30,7 +30,7 @@ const products = [
   {
     id: 3,
     name: 'Intention Necklace',
-    price: 68,
+    price: 1292, // $68 * 19
     collection: 'Jewelry',
     image: '/images/jewelry-1.jpg',
     description: 'Minimalist sterling silver pendant with intention stone'
@@ -38,7 +38,7 @@ const products = [
   {
     id: 4,
     name: 'Ritual Ring',
-    price: 54,
+    price: 1026, // $54 * 19
     collection: 'Jewelry',
     image: '/images/jewelry-2.jpg',
     description: 'Hand-crafted brass ring with hammered texture'
@@ -46,7 +46,7 @@ const products = [
   {
     id: 5,
     name: 'The Edit Tee',
-    price: 38,
+    price: 722, // $38 * 19
     collection: 'Apparel',
     image: '/images/tshirt-1.jpg',
     description: 'Organic cotton t-shirt with subtle embroidered detail'
@@ -54,7 +54,7 @@ const products = [
   {
     id: 6,
     name: 'Sunday Edition Gift Set',
-    price: 125,
+    price: 2375, // $125 * 19
     collection: 'Gift Sets',
     image: '/images/giftset-1.jpg',
     description: 'Curated collection: candle, necklace, and journal'
@@ -106,7 +106,7 @@ const products = [
                 <span class="product-collection">{product.collection}</span>
                 <h3 class="product-title">{product.name}</h3>
                 <p class="product-description">{product.description}</p>
-                <p class="product-price">${product.price}</p>
+                <p class="product-price">R{product.price}</p>
               </div>
             </a>
           </article>
@@ -128,7 +128,7 @@ const products = [
       <div class="info-grid">
         <div class="info-item">
           <h4>Free Shipping</h4>
-          <p>On orders over $75</p>
+          <p>On orders over R1,425</p> <!-- $75 * 19 -->
         </div>
         <div class="info-item">
           <h4>30-Day Returns</h4>
@@ -345,8 +345,8 @@ const products = [
 
 <script>
   // Collection filtering
-  const collectionBtns = document.querySelectorAll('.collection-btn');
-  const productCards = document.querySelectorAll('.product-card');
+  const collectionBtns = document.querySelectorAll<HTMLElement>('.collection-btn');
+  const productCards = document.querySelectorAll<HTMLElement>('.product-card');
 
   collectionBtns.forEach(btn => {
     btn.addEventListener('click', () => {
